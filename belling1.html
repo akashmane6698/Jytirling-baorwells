@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Page - Jyotirling Boarwells Nevari</title>
+    <style>
+        /* Add your styling here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+            height: 100vh;
+        }
+
+        .header {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3498db; /* Blue color */
+            padding: 20px;
+        }
+
+        .header img {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 80px;
+            height: 80px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 24px;
+        }
+
+        .sub-header {
+            grid-row: 2 / span 1;
+            grid-column: 1 / span 2;
+            background-color: #e0e0e0;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .billing-container {
+            grid-row: 3 / span 1;
+            grid-column: 1 / span 2;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .billing-container label {
+            display: inline-block;
+            width: 25%;
+            text-align: right;
+            margin: 10px 10px 5px 0;
+        }
+
+        .billing-container input {
+            width: calc(75% - 10px);
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .billing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .billing-table th, .billing-table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .billing-table th {
+            background-color: #f2f2f2;
+        }
+
+        .total-row {
+            font-weight: bold;
+        }
+
+        .signature-box {
+            border: 1px solid #dddddd;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .footer {
+            grid-row: 4 / span 1;
+            grid-column: 1 / span 2;
+            background-color: #3498db; /* Blue color */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Style for the Print button */
+        .print-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="Photo.jpg" alt="Profile Photo">
+        <h1>ज्योतिर्लिंग बोअरवेलस् नेवरी(विटा )</h1>
+    </div>
+    <div class="sub-header">
+        संपर्क: मु. पो. नेवरी, तालुका - कडेगाव, जि. - सांगली <br>
+        प्रो. प्रा.:श्री. गणेश मधुकर माने ,मो.7350502211/7773986010
+    </div>
+    <div class="billing-container">
+        <h2>दर पत्रक </h2>
+        <label for="customerName">ग्राहकाचे नाव :</label><input type="text" id="customerName" placeholder="Enter customer's name"><br>
+		<label for="customerName">एजेंटचे  नाव :</label><input type="text" id="customerName" placeholder="Enter customer's name"><br>
+		 <label for="moNumber">मो /नं :</label><input type="text" id="moNumber" placeholder="Enter Mobile number"><br>
+        <label for="customerAddress">पत्ता :</label><input type="text" id="customerAddress" placeholder="Enter address"><br>
+        <label for="date">तारीख :</label><input type="date" id="date"><br>
+		<!-- Added Date field -->
+
+        <!-- Billing Table -->
+        <table class="billing-table">
+            <thead>
+                <tr>
+                    <th>तपशील </th>
+                    <th>दर </th> <!-- Removed "Rate per foot" column -->
+                    <th>फुट </th>
+                    <th>रुपये </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1)३०० फुटा पर्यंत </td>
+                    <td><input type="number" id="rate1" oninput="calculateTotal()"></td>
+                    <td><input type="number" id="feet1" oninput="calculateTotal()"></td>
+                    <td><span id="rupees1">0</span></td>
+                </tr>
+                <tr>
+                    <td>2)३००ते४०० फुटापर्यंत </td>
+                    <td><input type="number" id="rate2" oninput="calculateTotal()"></td>
+                    <td><input type="number" id="feet2" oninput="calculateTotal()"></td>
+                    <td><span id="rupees2">0</span></td>
+                </tr>
+                <tr>
+                    <td>3)४००ते५००फुटापर्यंत </td>
+                    <td><input type="number" id="rate3" oninput="calculateTotal()"></td>
+                    <td><input type="number" id="feet3" oninput="calculateTotal()"></td>
+                    <td><span id="rupees3">0</span></td>
+                </tr>
+				    <td>४)५००ते६००फुटापर्यंत </td>
+                    <td><input type="number" id="rate4" oninput="calculateTotal()"></td>
+                    <td><input type="number" id="feet4" oninput="calculateTotal()"></td>
+                    <td><span id="rupees4">0</span></td>
+                </tr>
+                <tr>
+                    <td>५ )रिबोअर </td>
+                    <td><input type="number" id="rate5" oninput="calculateTotal()"></td>
+                    <td><input type="number" id="feet5" oninput="calculateTotal()"></td>
+                    <td><span id="rupees5">0</span></td>
+                </tr>
+                <tr>
+                    <tr>
+    <td>६) केसिंग</td>
+    <td>
+        <!-- Input for rate -->
+        <input type="number" id="rate6" oninput="calculateTotal()">
+        <br>
+        <!-- Dropdown for selecting weight -->
+        <label for="weight6">Weight:</label>
+        <select id="weight6" onchange="calculateTotal()">
+            <option value="6">6 kg</option>
+            <option value="8">8 kg</option>
+            <option value="10">10 kg</option>
+        </select>
+    </td>
+    <td>
+        <!-- Input for feet -->
+        <input type="number" id="feet6" oninput="calculateTotal()">
+    </td>
+    <td><span id="rupees6">0</span></td>
+</tr>
+
+					
+               
+                    <td>7)वॉशिंग  </td>
+                    <td><input type="number" id="rate7" oninput="calculateTotal()"></td>
+                    <td><input type="number" id="feet7" oninput="calculateTotal()"></td>
+                    <td><span id="rupees7">0</span></td>
+                </tr>
+				<tr>
+                    <td>8) फिल्टर पाईप  </td>
+                    <td><input type="number" id="rate8" oninput="calculateTotal()"></td>
+                    <td><input type="number" id="feet8" oninput="calculateTotal()"></td>
+                    <td><span id="rupees8">0</span></td>
+                </tr>
+                <!-- Add more rows as needed -->
+                <tr class="total-row">
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td><span id="totalRupees">0</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Signature Box -->
+        <br>
+		
+		
+
+        <div class="label">
+		 
+            <text-align :rightwards><h3>ज्योतिर्लिंग बोअरवेलस् करिता . </h3>
+        </div>
+    </div>
+	
+    <div class="footer">
+       जमिनीवर ४ ||, ६ || इंची व  विहरीत उभे व आडवे बोअर करिता आवश्य भेट द्या ,७३५०५०२२११/ ७७७३९८६०१० /९८५००५२७५०  
+    </div>
+    
+    <!-- Print button -->
+    <button class="print-button" onclick="window.print()">Print</button>
+
+    <script>
+    function calculateTotal() {
+    var rate1 = document.getElementById('rate1').value || 0;
+    var rate2 = document.getElementById('rate2').value || 0;
+    var rate3 = document.getElementById('rate3').value || 0;
+    var rate4 = document.getElementById('rate4').value || 0;
+    var rate5 = document.getElementById('rate5').value || 0;
+    var rate6 = document.getElementById('rate6').value || 0;
+    var rate7 = document.getElementById('rate7').value || 0;
+    var rate8 = document.getElementById('rate8').value || 0;
+    
+
+    var feet1 = document.getElementById('feet1').value || 0;
+    var feet2 = document.getElementById('feet2').value || 0;
+    var feet3 = document.getElementById('feet3').value || 0;
+    var feet4 = document.getElementById('feet4').value || 0;
+    var feet5 = document.getElementById('feet5').value || 0;
+    var feet6 = document.getElementById('feet6').value || 0;
+    var feet7 = document.getElementById('feet7').value || 0;
+    var feet8 = document.getElementById('feet8').value || 0;
+    
+
+    var rupees1 = rate1 * feet1;
+    var rupees2 = rate2 * feet2;
+    var rupees3 = rate3 * feet3;
+    var rupees4 = rate4 * feet4;
+    var rupees5 = rate5 * feet5;
+    var rupees6 = rate6 * feet6;
+    var rupees7 = rate7 * feet7;
+    var rupees8 = rate8 * feet8;
+   
+
+    document.getElementById('rupees1').innerText = rupees1;
+    document.getElementById('rupees2').innerText = rupees2;
+    document.getElementById('rupees3').innerText = rupees3;
+    document.getElementById('rupees4').innerText = rupees4;
+    document.getElementById('rupees5').innerText = rupees5;
+    document.getElementById('rupees6').innerText = rupees6;
+    document.getElementById('rupees7').innerText = rupees7;
+    document.getElementById('rupees8').innerText = rupees8;
+   
+
+    var totalRupees = rupees1 + rupees2 + rupees3 + rupees4 + rupees5 + rupees6 + rupees7 + rupees8;
+    document.getElementById('totalRupees').innerText = totalRupees;
+}
+
+        
+    </script>
+
+</body>
+
+</html>

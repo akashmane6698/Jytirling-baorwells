@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jyotirling Boarwells Nevari</title>
+    <style>
+        /* Add your styling here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+            height: 100vh;
+        }
+
+        .header {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3498db; /* Blue color */
+            padding: 20px;
+        }
+
+        .header img {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 80px;
+            height: 80px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 24px;
+        }
+
+        .sub-header {
+            grid-row: 2 / span 1;
+            grid-column: 1 / span 2;
+            background-color: #e0e0e0;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .login-container {
+            grid-row: 3 / span 1;
+            grid-column: 1 / span 2;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px; /* Adjust the max-width to your preference */
+            margin: auto;
+        }
+
+        .login-container h2 {
+            color: #333333;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #555555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+
+        .form-group button {
+            background-color: #ff69b4; /* Pink color */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #d0468b; /* Darker pink color */
+        }
+
+        #login-error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .footer {
+            grid-row: 4 / span 1;
+            grid-column: 1 / span 2;
+            background-color: #3498db; /* Blue color */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="Photo.jpg" alt="Profile Photo">
+        <h1>ज्योतिर्लिंग बोअरवेलस् नेवरी ( विटा )</h1>
+    </div>
+    <div class="sub-header">
+        संपर्क: मु. पो. नेवरी, तालुका - कडेगाव, जि. - सांगली <br>
+        प्रो. प्रा.:श्री. गणेश मधुकर माने ,मो.7350502211/7773986010 
+    </div>
+    <div class="login-container">
+        <h2>लॉगिन  - ज्योतिर्लिंग बोअरवेलस् नेवरी </h2>
+        <form class="login-form" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">पुढे जा </button>
+            </div>
+            <p id="login-error"></p>
+        </form>
+    </div>
+    <div class="footer">
+        जमिनीवर ४ ||, ६ || इंची व  विहरीत उभे व आडवे बोअर करिता आवश्य भेट द्या ,७३५०५०२२११/ ७७७३९८६०१० /९८५००५२७५०  
+    </div>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Replace 'your_username' and 'your_password' with your actual username and password
+            if (username === 'ganesh010' && password === 'ganesh@6698') {
+                // Redirect to the billing page upon successful login
+                window.location.href = 'belling1.html';
+                return false; // Prevent form submission
+            } else {
+                document.getElementById('login-error').innerText = 'Invalid username or password';
+                return false; // Prevent form submission
+            }
+        }
+    </script>
+</body>
+
+</html>
